@@ -6,15 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FamilyMemberFragment extends Fragment
+public class ProfileFragment extends Fragment
 {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup view, Bundle bundle)
     {   super.onCreateView(inflater,view,bundle);
 
 
-    View rootView = inflater.inflate(R.layout.fragment_family_member, view, false);
-    return rootView;
+        View rootView = inflater.inflate(R.layout.fragment_profile, view, false);
+        return rootView;
     }
 
 
