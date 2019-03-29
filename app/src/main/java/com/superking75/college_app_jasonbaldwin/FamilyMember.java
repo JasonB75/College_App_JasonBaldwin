@@ -1,0 +1,35 @@
+package com.superking75.college_app_jasonbaldwin;
+
+public class FamilyMember
+{
+    String mLastName;
+    String mFirstName;
+
+
+
+
+    public String getLastName()
+    { return mLastName; }
+    public void setLastName(String lastName)
+    { this.mLastName = lastName; }
+
+
+    public String getFirstName()
+    { return mFirstName; }
+    public void setFirstName(String firstName)
+    { mFirstName = firstName; }
+
+    public FamilyMember()
+    {
+        mFirstName = "Hey";
+        mLastName = "Baby";
+
+    }
+    public void testMethod(){
+        if (mFirstName == "test"){
+            mFirstName = "hello world";
+        }
+    }
+
+
+}

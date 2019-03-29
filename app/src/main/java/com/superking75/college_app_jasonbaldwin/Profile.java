@@ -1,26 +1,33 @@
 package com.superking75.college_app_jasonbaldwin;
 
 public class Profile {
+    String mFirstName;
+    String mLastName;
 
-    String lastName;
-    String FirstName;
-
+    public Profile()
+    {
+        mFirstName = "Alan";
+        mLastName = "Balwin";
+    }
     public String getLastName()
     {
-        return lastName;
+        return mLastName;
     }
-    public void setLastName(String lastName)
+    public void setLastName(String LastName)
     {
-        this.lastName = lastName;
+        this.mLastName = LastName;
     }
-
-
     public String getFirstName()
     {
-        return FirstName;
+        return mFirstName;
     }
     public void setFirstName(String firstName)
     {
-        FirstName = firstName;
+        mFirstName = firstName;
     }
+
+
+
+
+
 }

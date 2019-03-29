@@ -1,27 +1,21 @@
 package com.superking75.college_app_jasonbaldwin;
 
-public class Guardian {
+public class Guardian extends FamilyMember {
     String lastName;
     String FirstName;
 
     public String getLastName()
-    {
-        return lastName;
-    }
+    { return lastName; }
     public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
+    { this.lastName = lastName; }
 
 
     public String getFirstName()
-    {
-        return FirstName;
-    }
+    { return FirstName; }
     public void setFirstName(String firstName)
-    {
-        FirstName = firstName;
-    }
+    { FirstName = firstName; }
 
+    public Guardian()
+    {super();}
 
 }
