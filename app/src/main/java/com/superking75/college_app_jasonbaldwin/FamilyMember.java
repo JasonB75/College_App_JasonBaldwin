@@ -1,10 +1,13 @@
 package com.superking75.college_app_jasonbaldwin;
 
+import android.widget.EditText;
+
 public class FamilyMember
 {
     String mLastName;
     String mFirstName;
-
+ //   EditText mFirstNameEdit;
+   // EditText mLastNameEdit;
 
 
 

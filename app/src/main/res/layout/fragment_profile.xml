@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="First"
         app:layout_constraintEnd_toEndOf="@+id/familyTextView"
         app:layout_constraintStart_toStartOf="@+id/familyTextView"
@@ -31,11 +31,46 @@
         android:id="@+id/profilelastNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Last"
         app:layout_constraintEnd_toEndOf="@+id/familyTextView"
         app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="@+id/familyTextView"
         app:layout_constraintTop_toBottomOf="@+id/profilefirstNameView" />
+
+    <EditText
+        android:id="@+id/profileFirstEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/profilefirstNameView"
+        app:layout_constraintTop_toBottomOf="@+id/familyTextView" />
+
+    <EditText
+        android:id="@+id/profileLastEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/profilelastNameView"
+        app:layout_constraintTop_toBottomOf="@+id/profileFirstEdit" />
+
+    <Button
+        android:id="@+id/DatePikerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Select your date of birth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileLastEdit" />
 
 
 </android.support.constraint.ConstraintLayout>

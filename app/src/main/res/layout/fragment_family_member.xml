@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/familyfirstNameView" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/familyFirstEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/familyTextView" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/familyLastEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -58,10 +58,10 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/familylastNameView"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/familyFirstEdit" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/familySubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
@@ -70,7 +70,7 @@
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/familyLastEdit" />
 
 
 </android.support.constraint.ConstraintLayout>

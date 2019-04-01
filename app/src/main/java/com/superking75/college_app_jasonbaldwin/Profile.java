@@ -1,13 +1,17 @@
 package com.superking75.college_app_jasonbaldwin;
 
+import java.util.Date;
+
 public class Profile {
     String mFirstName;
     String mLastName;
+    Date dateOfBirth;
 
     public Profile()
     {
         mFirstName = "Alan";
         mLastName = "Balwin";
+        dateOfBirth = new Date();
     }
     public String getLastName()
     {
