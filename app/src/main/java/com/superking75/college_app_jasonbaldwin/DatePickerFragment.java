@@ -15,7 +15,7 @@ public class DatePickerFragment extends DialogFragment
     final static String DATE_ARGUMENT = "dateofbirth";
     DatePicker mDatePicker;
     Date mDate;
-    Calendar mCalander;
+    Calendar mCalander; 
     @Override
     public AlertDialog onCreateDialog(Bundle budle)
     {
