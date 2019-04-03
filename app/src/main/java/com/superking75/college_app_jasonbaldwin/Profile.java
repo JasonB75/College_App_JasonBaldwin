@@ -7,12 +7,7 @@ public class Profile {
     String mLastName;
     Date dateOfBirth;
 
-    public Profile()
-    {
-        mFirstName = "Alan";
-        mLastName = "Balwin";
-        dateOfBirth = new Date();
-    }
+
     public String getLastName()
     {
         return mLastName = mLastName;
@@ -28,6 +23,12 @@ public class Profile {
     public void setFirstName(String firstName)
     {
         mFirstName = firstName;
+    }
+    public Profile()
+    {
+        mFirstName = "Alan";
+        mLastName = "Balwin";
+        dateOfBirth = new Date();
     }
 
 

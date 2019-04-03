@@ -1,5 +1,4 @@
 package com.superking75.college_app_jasonbaldwin;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,22 +14,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class DatePickerFragment extends DialogFragment
-{
-    final static String DATE_ARGUMENT = "dateofbirth";
+public class DatePickerFragment extends DialogFragment {
+
+    final static String DATE_ARGUMENT ="dateofbirth";
     final static String EXTRA_DATE_OF_BIRTH = "com.jasonb75.college_app_Jasonbaldwin.DatePickerFragment";
     DatePicker mDatePicker;
     Date mDate;
     Calendar mCalendar;
 
     @Override
-    public AlertDialog onCreateDialog(Bundle budle)
-    {
+    public AlertDialog onCreateDialog(Bundle bundle){
         View v = LayoutInflater.from(getActivity())
                 .inflate(R.layout.fragment_date_picker, null);
-       mDate = (Date)getArguments().getSerializable(DATE_ARGUMENT);
-       mCalendar.Calendar.getInstance();
-       mCalendar.setTime(mDate);
+        mDate = (Date)getArguments().getSerializable(DATE_ARGUMENT);
+        mCalendar = Calendar.getInstance();
+        mCalendar.setTime(mDate);
         mDatePicker = (DatePicker) v.findViewById(R.id.dialog_date_of_birth);
         mDatePicker.init(mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH), null);
         return new AlertDialog.Builder(getActivity())
@@ -65,7 +63,5 @@ public class DatePickerFragment extends DialogFragment
             getTargetFragment().onActivityResult(getTargetRequestCode(), resultCode, intent);
         }
     }
-
-
 
 }
