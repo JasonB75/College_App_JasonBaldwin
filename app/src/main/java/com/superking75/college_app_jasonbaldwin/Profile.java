@@ -15,7 +15,7 @@ public class Profile {
     }
     public String getLastName()
     {
-        return mLastName;
+        return mLastName = mLastName;
     }
     public void setLastName(String LastName)
     {
@@ -31,7 +31,7 @@ public class Profile {
     }
 
 
-
+//cgo
 
 
 }
