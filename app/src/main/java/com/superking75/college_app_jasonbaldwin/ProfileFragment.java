@@ -12,7 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 
+import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+
 import java.util.Date;
+
+import static com.backendless.media.video.H264Stream.TAG;
 
 public class ProfileFragment extends Fragment {
 
@@ -39,6 +45,27 @@ public class ProfileFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+
+        Backendless.Data.of(Profile.class).save(mProfile, new AsyncCallback<Profile>() {
+            @Override
+            public void handleResponse(Profile response)
+            {
+                Log.i(TAG,"Saved profile to Backendless");
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault)
+            {
+                Log.i(TAG, "Failed to save profile" + fault.getMessage());
+            }
+        });
+
     }
 
     @Override

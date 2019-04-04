@@ -24,6 +24,7 @@ public class Profile {
     {
         mFirstName = firstName;
     }
+
     public Profile()
     {
         mFirstName = "Alan";
