@@ -6,6 +6,31 @@ public class Profile {
     String mFirstName;
     String mLastName;
     Date dateOfBirth;
+    String objectId;
+    String email;
+
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+    public String getObjectId() {
+        return objectId;
+    }
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
 
 
     public String getLastName()

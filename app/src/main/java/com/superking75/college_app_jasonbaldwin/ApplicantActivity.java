@@ -1,5 +1,7 @@
 package com.superking75.college_app_jasonbaldwin;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -29,6 +31,9 @@ public class ApplicantActivity extends AppCompatActivity
 
         String  APP_ID;
         String API_KEY;
+        String MY_EMAIL_ADDRESS;
+        final static String EMAIL_PREF = "EMAIL_PREF";
+
 
 
     @Override
@@ -53,6 +58,17 @@ public class ApplicantActivity extends AppCompatActivity
                 Log.e("Backendless Error", fault.getMessage());
             }
         });
+
+        /**
+         * Email preferances
+         */
+        //
+        SharedPreferences sharedPreferences =
+                this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(EMAIL_PREF, MY_EMAIL_ADDRESS);
+        editor.commit();
+        ///
 
         setContentView(R.layout.activity_applicant);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
