@@ -27,6 +27,7 @@ import static com.backendless.media.SessionBuilder.TAG;
 public class ProfileFragment extends Fragment {
 
     public static final int REQUEST_DATE_OF_BIRTH = 0;
+    TextView mainText;
     Button DatePickerButton;
     Profile mProfile;
     TextView mFirstNameText;
@@ -44,7 +45,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup view, Bundle bundle){
         super.onCreateView(inflater, view, bundle);
 
-
+       // mainText = mainText.findViewById(R.id.ProfileTextView);
 
 
         mProfile = new Profile();
@@ -133,6 +134,8 @@ public class ProfileFragment extends Fragment {
     public void onStart()
     {
         super.onStart();
+       // mainText = mainText.findViewById(R.id.ProfileTextView);
+       // mainText.setText("OnStart");
         SharedPreferences sharedPreferences =
                 getActivity().getPreferences(Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
@@ -147,8 +150,17 @@ public class ProfileFragment extends Fragment {
             public void handleResponse(List<Profile> profile) {
                 if (!profile.isEmpty()) {
                     String profileId = profile.get(0).getObjectId();
-                    mFirstNameText = 
-                    Log.d(TAG, "Object ID: " + profileId);
+
+                   // mFirstNameText.setText();
+                  //  mLastNameText.setText();
+                   // mSubmitButton.setText(profile.get(0).dateOfBirth.toString());
+
+                    mProfile.setFirstName(profile.get(0).mFirstName);
+                    mProfile.setLastName(profile.get(0).mLastName);
+                    mFirstNameText.setText(mProfile.getFirstName());
+                    mLastNameText.setText(mProfile.getLastName());
+
+                    Log.d(TAG, "Object ID: 122212 " + profileId);
                     mProfile.setObjectId(profileId);
                 }
             }

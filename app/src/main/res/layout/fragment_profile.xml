@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/familyTextView"
+        android:id="@+id/ProfileTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -25,9 +25,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="First"
-        app:layout_constraintEnd_toEndOf="@+id/familyTextView"
-        app:layout_constraintStart_toStartOf="@+id/familyTextView"
-        app:layout_constraintTop_toBottomOf="@+id/familyTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/ProfileTextView"
+        app:layout_constraintStart_toStartOf="@+id/ProfileTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ProfileTextView" />
 
     <TextView
         android:id="@+id/profilelastNameView"
@@ -35,9 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Last"
-        app:layout_constraintEnd_toEndOf="@+id/familyTextView"
+        app:layout_constraintEnd_toEndOf="@+id/ProfileTextView"
         app:layout_constraintHorizontal_bias="0.575"
-        app:layout_constraintStart_toStartOf="@+id/familyTextView"
+        app:layout_constraintStart_toStartOf="@+id/ProfileTextView"
         app:layout_constraintTop_toBottomOf="@+id/profilefirstNameView" />
 
     <EditText
@@ -49,7 +49,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/profilefirstNameView"
-        app:layout_constraintTop_toBottomOf="@+id/familyTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/ProfileTextView" />
 
     <EditText
         android:id="@+id/profileLastEdit"
