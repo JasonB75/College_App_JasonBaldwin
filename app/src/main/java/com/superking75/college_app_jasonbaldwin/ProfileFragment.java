@@ -99,7 +99,7 @@ public class ProfileFragment extends Fragment {
         String whereClause = "email = '" + email + "'";
         DataQueryBuilder query = DataQueryBuilder.create();
         query.setWhereClause(whereClause);
-        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
             @Override
             public void handleResponse(List<Profile> profile) {
                 if (!profile.isEmpty()) {
@@ -131,24 +131,33 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onStart()
-    {
+    {Log.i(TAG, "onstart121");
         super.onStart();
         SharedPreferences sharedPreferences =
                 getActivity().getPreferences(Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
 
             //mProfile.setEmail(email);
-
+        Log.i(TAG, "midway121");
         String whereClause = "email = '" + email + "'";
         DataQueryBuilder query = DataQueryBuilder.create();
         query.setWhereClause(whereClause);
-        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+        Log.i(TAG, "midFAr1212");
+        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
+
             @Override
             public void handleResponse(List<Profile> profile) {
+                Log.i(TAG, "inResponse1212");
                 if (!profile.isEmpty()) {
                     String profileId = profile.get(0).getObjectId();
-                    mFirstNameText = 
-                    Log.d(TAG, "Object ID: " + profileId);
+                  //  mFirstNameText =
+                   // Log.d(TAG, "Object ID: " + profileId);
+                    mProfile = profile.get(0);
+                    //mProfile.setFirstName(mProfile);
+                    //mProfile.setLastName(mLastNameEdit.getText().toString());
+                    mFirstNameText.setText(mProfile.getFirstName());
+                    mLastNameText.setText(mProfile.getLastName());
+                    Log.i(TAG, "Pulled info from backendless");
                     mProfile.setObjectId(profileId);
                 }
             }

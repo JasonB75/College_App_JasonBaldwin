@@ -18,4 +18,8 @@ public class Guardian extends FamilyMember {
     public Guardian()
     {super();}
 
+    public Guardian(String firstName, String lastName)
+    {super(firstName,lastName);}
+
+
 }

@@ -28,11 +28,20 @@ public class FamilyMember
         mLastName = "Baby";
 
     }
+
+    public FamilyMember(String firstName, String lastName)
+    {
+        mFirstName = firstName;
+        mLastName = lastName;
+
+    }
     public void testMethod(){
         if (mFirstName == "test"){
             mFirstName = "hello world";
         }
     }
+
+
 
 
 }
