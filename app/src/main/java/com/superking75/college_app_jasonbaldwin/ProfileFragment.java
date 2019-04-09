@@ -19,6 +19,15 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
 
+
+import android.widget.EditText;
+import java.util.List;
+import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.BackendlessDataQuery;
+import com.backendless.persistence.DataQueryBuilder;
+
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +57,30 @@ public class ProfileFragment extends Fragment {
 
 
         mProfile = new Profile();
+
+        String whereClause = "email = 'jasonbaldwin301@gmail.com'";
+        //Retrieve from Backendless
+        DataQueryBuilder query = DataQueryBuilder.create();
+        query.setWhereClause(whereClause);
+        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+            @Override
+            public void handleResponse(List<Profile> response) {
+                if (!response.isEmpty()) {
+                    mProfile = response.get(0);
+                    mFirstNameText.setText(mProfile.getFirstName());
+                    mLastNameText.setText(mProfile.getLastName());
+                    Log.i(TAG, "Pulled info from backendless");
+                }
+
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Log.e("Profile Fragment", "Failed to find profile: " + fault.getMessage());
+            }
+        });
+
+
         //New code
         View rootView = inflater.inflate(R.layout.fragment_profile, view, false);
 

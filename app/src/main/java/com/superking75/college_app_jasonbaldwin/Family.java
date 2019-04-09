@@ -14,6 +14,10 @@ public class Family
         Guardian test = new Guardian("jace", "boi");
         Guardian test2 = new Guardian();
         family = new ArrayList<>();
+        Guardian mom = new Guardian("Yvette", "b");
+        Guardian dad = new Guardian("Jeffafa", "b");
+        family.add(mom);
+        family.add(dad);
         getFamily().getFamilyList().add(test);
         getFamily().getFamilyList().add(test2);
     }
