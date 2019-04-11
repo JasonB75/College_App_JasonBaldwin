@@ -84,7 +84,8 @@ public class ProfileFragment extends Fragment {
         //New code
         View rootView = inflater.inflate(R.layout.fragment_profile, view, false);
 
-        DatePickerButton = (Button)rootView.findViewById(R.id.DatePickerButton);
+        DatePickerButton =
+                (Button)rootView.findViewById(R.id.DatePickerButton);
 
         DatePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +109,19 @@ public class ProfileFragment extends Fragment {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mFirstNameEdit.getText().toString()!=null){
+                    mProfile.firstName = firstNameEdit.getText().toString();
+                }
+                if (mLastNameEdit.getText().toString()!=null){
+                    mProfile.lastName = lastNameEdit.getText().toString();
+                }
+                saveToBackendless();
+            }
+        });
+
+
+
+
                 mProfile.setFirstName(mFirstNameEdit.getText().toString());
                 mProfile.setLastName(mLastNameEdit.getText().toString());
                 mFirstNameText.setText(mProfile.getFirstName());
