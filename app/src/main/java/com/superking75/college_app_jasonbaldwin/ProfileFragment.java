@@ -110,22 +110,23 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mFirstNameEdit.getText().toString()!=null){
-                    mProfile.firstName = firstNameEdit.getText().toString();
+                    mProfile.setFirstName(mFirstNameEdit.getText().toString());
+                    mFirstNameText.setText(mFirstNameEdit.getText().toString());
                 }
                 if (mLastNameEdit.getText().toString()!=null){
-                    mProfile.lastName = lastNameEdit.getText().toString();
+                    mProfile.setLastName(mLastNameEdit.getText().toString());
+                    mLastNameText.setText(mLastNameEdit.getText().toString());
                 }
                 saveToBackendless();
             }
         });
-
-
-
-
-                mProfile.setFirstName(mFirstNameEdit.getText().toString());
-                mProfile.setLastName(mLastNameEdit.getText().toString());
-                mFirstNameText.setText(mProfile.getFirstName());
-                mLastNameText.setText(mProfile.getLastName());
+        DatePickerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(mProfile.dateOfBirth);
+                dialog.setTargetFragment(ProfileFragment.this, REQUEST_DATE_OF_BIRTH);
+                dialog.show(fm, "DialogDateOfBirth");
 
             }
         });
@@ -137,7 +138,9 @@ public class ProfileFragment extends Fragment {
     public void onPause()
     {
         super.onPause();
-        SharedPreferences sharedPreferences =
+        saveToBackendless();
+
+       /* SharedPreferences sharedPreferences =
                 getActivity().getPreferences(Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
         if (mProfile.getEmail() == null) {
@@ -173,13 +176,33 @@ public class ProfileFragment extends Fragment {
                 public void handleFault(BackendlessFault fault) {
                     Log.i(TAG, "Failed to save profile" + fault.getMessage());
                 }
-            });
+            });*/
     }
 
     @Override
     public void onStart()
     {Log.i(TAG, "onstart121");
         super.onStart();
+
+        String whereClause = "email = 'jasonbaldwin301@gmail.com'";
+        DataQueryBuilder query = DataQueryBuilder.create();
+        query.setWhereClause(whereClause);
+        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         SharedPreferences sharedPreferences =
                 getActivity().getPreferences(Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
@@ -212,7 +235,7 @@ public class ProfileFragment extends Fragment {
             public void handleFault(BackendlessFault fault) {
                 Log.e(TAG, "Failed to find profile: " + fault.getMessage());
             }
-        });
+        });*/
 
     }
 
@@ -224,8 +247,63 @@ public class ProfileFragment extends Fragment {
                 mProfile.dateOfBirth = (Date)intent.getSerializableExtra(DatePickerFragment.EXTRA_DATE_OF_BIRTH);
                 Log.i("ProfileFragment", mProfile.dateOfBirth.toString());
                 DatePickerButton.setText(mProfile.dateOfBirth.toString());
+                saveToBackendless();
             }
         }
     }
+
+
+
+
+    //convenience method for saving to Backendless
+    private void saveToBackendless(){
+        String whereClause = "email = 'jasonbaldwin301@gmail.com'";
+        DataQueryBuilder query = DataQueryBuilder.create();
+        query.setWhereClause(whereClause);
+        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+            @Override
+            public void handleResponse(List<Profile> response) {
+                if (!response.isEmpty()) {
+                    String profileId = response.get(0).getObjectId();
+                    Log.d("Profile Fragment", "Object ID: " + profileId);
+                    mProfile.setObjectId(profileId);
+                    Backendless.Data.of(Profile.class).save(mProfile, new AsyncCallback<Profile>() {
+                        @Override
+                        public void handleResponse(Profile response) {
+                            Log.i("success", response.getFirstName() + " has been saved");
+                        }
+
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                            Log.e("Error", fault.getMessage());
+                        }
+                    });
+                }
+                else{
+                    Backendless.Data.of(Profile.class).save(mProfile, new AsyncCallback<Profile>() {
+                        @Override
+                        public void handleResponse(Profile response) {
+                            Log.i("success", response.getFirstName() + " has been saved");
+                            mProfile.objectId = response.objectId;
+                        }
+
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                            Log.e("Error", fault.getMessage());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Log.e("Profile Fragment", "Failed to find profile: " + fault.getMessage());
+            }
+        });
+    }
+
+
+
+
 
 }
