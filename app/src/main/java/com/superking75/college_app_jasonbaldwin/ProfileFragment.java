@@ -62,11 +62,12 @@ public class ProfileFragment extends Fragment {
         //Retrieve from Backendless
         DataQueryBuilder query = DataQueryBuilder.create();
         query.setWhereClause(whereClause);
-        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
             @Override
             public void handleResponse(List<Profile> response) {
                 if (!response.isEmpty()) {
                     mProfile = response.get(0);
+                    setmProfile(mProfile, response, 0);
                     mFirstNameText.setText(mProfile.getFirstName());
                     mLastNameText.setText(mProfile.getLastName());
                     Log.i(TAG, "Pulled info from backendless");
@@ -187,8 +188,30 @@ public class ProfileFragment extends Fragment {
         String whereClause = "email = 'jasonbaldwin301@gmail.com'";
         DataQueryBuilder query = DataQueryBuilder.create();
         query.setWhereClause(whereClause);
-        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
-                }
+        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
+             @Override
+            public void handleResponse(List<Profile> profile)
+             {
+                 if(!profile.isEmpty())
+                 {
+                     String profileId = profile.get(0).getObjectId();
+                     Log.d(TAG, "Object ID: " + profileId);
+                     mProfile.setObjectId(profileId);
+                     mProfile = profile.get(0);
+                     Log.d(TAG, "On start, data retreaved 121");
+
+                     setmProfile(mProfile, profile, 0);
+                     mFirstNameText.setText(mProfile.getFirstName());
+                     mLastNameText.setText(mProfile.getLastName());
+                 }
+             }
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Log.e("Error", fault.getMessage());
+            }
+        });
+
+        }
 
 
 
@@ -237,7 +260,7 @@ public class ProfileFragment extends Fragment {
             }
         });*/
 
-    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent){
@@ -257,10 +280,11 @@ public class ProfileFragment extends Fragment {
 
     //convenience method for saving to Backendless
     private void saveToBackendless(){
+        Log.d("save", "SavetoBackendless121");
         String whereClause = "email = 'jasonbaldwin301@gmail.com'";
         DataQueryBuilder query = DataQueryBuilder.create();
         query.setWhereClause(whereClause);
-        Backendless.Data.of(Profile.class).find(query, new AsyncCallback<List<Profile>>() {
+        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
             @Override
             public void handleResponse(List<Profile> response) {
                 if (!response.isEmpty()) {
@@ -302,6 +326,16 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    public void setmProfile(Profile mProfile, List<Profile> response, int dataIndex)
+    { Log.i("set", "Set data from backendless 121");
+        mProfile.setFirstName(response.get(dataIndex).getFirstName());
+        Log.i("121", mProfile.getFirstName());
+        mProfile.setLastName(response.get(dataIndex).getLastName());
+        Log.i("121", response.get(dataIndex).getLastName());
+        mProfile.setDateOfBirth(response.get(dataIndex).getDateOfBirth());
+        mProfile.setObjectId(response.get(dataIndex).getObjectId());
+
+    }
 
 
 
