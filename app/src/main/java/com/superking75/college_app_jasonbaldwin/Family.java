@@ -18,8 +18,8 @@ public class Family
         Guardian dad = new Guardian("Jeffafa", "b");
         family.add(mom);
         family.add(dad);
-        getFamily().getFamilyList().add(test);
-        getFamily().getFamilyList().add(test2);
+      //    getFamily().getFamilyList().add(test);
+     //   getFamily().getFamilyList().add(test2);
     }
 
     public static Family getFamily()

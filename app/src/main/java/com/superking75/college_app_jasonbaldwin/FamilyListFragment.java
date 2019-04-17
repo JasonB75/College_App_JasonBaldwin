@@ -45,21 +45,21 @@ public class FamilyListFragment extends ListFragment
         super.onCreate(savedInstanceState);
         getActivity().setTitle(R.string.family_member_title);
         FamilyMemberAdapter adapter = new FamilyMemberAdapter(mFamily.getFamilyList());
-        mFamily = Family.getFamily();
+       // mFamily = Family.getFamily();
 
        // final FamilyMemberAdapter adapter = new FamilyMemberAdapter(mFamily.getFamilyList());
         setListAdapter(adapter);
        // hasOptionsMenu(true);
     }
 
-    @Override
+  /*  @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState)
     {
         View v = super.onCreateView(inflater, parent, savedInstanceState);
         ListView listView = (ListView)v.findViewById(R.id.family_member_list_item_nameTextView);
         registerForContextMenu(listView);
         return v;
-    }
+    }*/
 
     //@Override
    // public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
