@@ -325,7 +325,13 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
+  /**  public File getPhotoFile() {
+        File externalFilesDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        if (externalFilesDir == null) {
+            return null;
+        }
+        return new File (externalFilesDir, mProfile.getPhotoFilename());
+    }*/
     public void setmProfile(Profile mProfile, List<Profile> response, int dataIndex)
     { Log.i("set", "Set data from backendless 121");
         mProfile.setFirstName(response.get(dataIndex).getFirstName());

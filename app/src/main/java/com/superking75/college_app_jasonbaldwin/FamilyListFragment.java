@@ -43,7 +43,7 @@ public class FamilyListFragment extends ListFragment {
             TextView nameTextView =
                     (TextView)convertView
                             .findViewById(R.id.family_member_list_item_nameTextView);
-            nameTextView.setText(f.getFirstName() + " " + f.getLastName());
+            nameTextView.setText(f.toString());
 
             return convertView;
         }

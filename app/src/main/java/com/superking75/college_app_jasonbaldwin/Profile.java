@@ -1,5 +1,7 @@
 package com.superking75.college_app_jasonbaldwin;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class Profile {
@@ -8,7 +10,8 @@ public class Profile {
     Date dateOfBirth;
     String objectId;
     String email;
-
+    private final static String PHOTOFILENAME = "IMG_PROFILE.jpg";
+    Bitmap i;
 
 
     public String getEmail() {
@@ -57,6 +60,10 @@ public class Profile {
         dateOfBirth = new Date();
     }
 
+  //  public String getPhotoFileName()
+   // {
+
+   // }
 
 //cgo
 
