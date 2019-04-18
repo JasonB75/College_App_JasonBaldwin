@@ -21,7 +21,8 @@ public class Family
         Sibling ryan = new Sibling("rice", "boi");
         family.add(mom);
         family.add(dad);
-        getFamily().getFamilyList().add(test);
+        getFamilyList().add(test);
+        getFamilyList().add(ryan);
        getFamilyList().add(test2);
     }
 

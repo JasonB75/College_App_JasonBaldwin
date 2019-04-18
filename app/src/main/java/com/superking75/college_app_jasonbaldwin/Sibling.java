@@ -8,7 +8,7 @@ public class Sibling extends FamilyMember
     @Override
     public String toString()
     {
-        return "Guardian: " + getFirstName() + " " +getLastName();
+        return "Sibling: " + getFirstName() + " " +getLastName();
     }
 
     public Sibling(String firstName, String lastName)
