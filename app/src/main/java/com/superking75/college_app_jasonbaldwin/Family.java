@@ -1,5 +1,7 @@
 package com.superking75.college_app_jasonbaldwin;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Family
@@ -18,14 +20,15 @@ public class Family
         Guardian dad = new Guardian("Jeffafa", "b");
         family.add(mom);
         family.add(dad);
-      //    getFamily().getFamilyList().add(test);
-     //   getFamily().getFamilyList().add(test2);
+       // getFamily().getFamilyList().add(test);
+       // getFamily().getFamilyList().add(test2);
     }
 
     public static Family getFamily()
     {
         if (sFamily == null)
-        {sFamily = new Family();}
+        {sFamily = new Family();
+            Log.i("121Family", "newFamily");}
         return sFamily;
     }
 
