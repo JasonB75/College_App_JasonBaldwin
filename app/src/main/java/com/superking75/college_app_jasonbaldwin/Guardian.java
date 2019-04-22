@@ -51,11 +51,14 @@ public class Guardian extends FamilyMember {
         return "Guardian: " + getFirstName() + " " +getLastName() +"\n Occupation: " + getOccupation();
     }
 
-    @Override
-    public boolean equals()
+    //@Override
+    /*public boolean equals(FamilyMember guardian)
     {
-        if ()
-    }
+        if (guardian.getFirstName().equalsIgnoreCase(FirstName) && guardian.getLastName().equalsIgnoreCase(lastName))
+        {return true;}
+        else
+        {return false;}
+    }*/
 }
 
 

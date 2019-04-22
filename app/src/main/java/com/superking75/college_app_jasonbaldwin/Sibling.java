@@ -14,12 +14,13 @@ public class Sibling extends FamilyMember
     public Sibling(String firstName, String lastName)
     {
         mFirstName = firstName;
-        mLastName = lastName;
+        mlastName = lastName;
     }
     public Sibling()
     {
 
     }
+
 
     public String getLastName()
     { return mlastName; }
@@ -31,4 +32,13 @@ public class Sibling extends FamilyMember
     public void setFirstName(String firstName)
     { mFirstName = firstName; }
 
+    /*public boolean equals(FamilyMember sibling)
+    {
+        if (sibling.getFirstName().equalsIgnoreCase(mFirstName) && sibling.getLastName().equalsIgnoreCase(mlastName))
+        {return true;}
+        else
+        {return false;}
+    }*/
 }
+
+

@@ -17,7 +17,7 @@ public class Family
         Guardian test2 = new Guardian();
         family = new ArrayList<>();
         Guardian mom = new Guardian("Yvette", "b");
-        Guardian dad = new Guardian("Jeffafa", "b");
+        Guardian dad = new Guardian("Yvette", "b");
         Sibling ryan = new Sibling("rice", "boi");
         //Log.i("Guard1212", mom.getFirstName());
         family.add(mom);

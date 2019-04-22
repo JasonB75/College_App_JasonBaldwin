@@ -41,7 +41,29 @@ public class FamilyMember
         }
     }
 
+    public boolean equals(Object o) {
+        if (o.getClass() == Guardian.class)
+        {
+            Guardian g = (Guardian) o;
+            if (this.getFirstName().equalsIgnoreCase(g.getFirstName()) && this.getLastName().equalsIgnoreCase(g.getLastName()))
+            {
+                return true;
+            }
+        }
+        else if (o.getClass() == Sibling.class)
+        {
+            Sibling s = (Sibling) o;
+            if (this.getFirstName().equalsIgnoreCase(s.getFirstName()) && this.getLastName().equalsIgnoreCase(s.getLastName()))
+            {
+                return true;
+            }
+        }
+        
+        return false;
 
+
+
+    }
 
 
 }
