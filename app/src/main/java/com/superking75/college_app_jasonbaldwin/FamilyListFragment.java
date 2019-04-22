@@ -1,6 +1,7 @@
 package com.superking75.college_app_jasonbaldwin;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -39,6 +40,7 @@ public class FamilyListFragment extends ListFragment {
             }
 
             FamilyMember f = getItem(position);
+            Log.d(TAG, "The type of FamilyMember at position " + position + " is " + f.getClass().getName());
 
             TextView nameTextView =
                     (TextView)convertView
