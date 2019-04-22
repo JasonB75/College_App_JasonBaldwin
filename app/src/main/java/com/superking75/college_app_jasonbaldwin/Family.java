@@ -43,5 +43,14 @@ public class Family
         this.family = family;
     }
 
+    public void deleteFamilyMember(FamilyMember familyMember)
+    {
+        family.remove(familyMember);
+    }
+
+    public void addFamilyMember(FamilyMember familyMember)
+    {
+        family.add(familyMember);
+    }
 
 }

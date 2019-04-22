@@ -2,10 +2,21 @@ package com.superking75.college_app_jasonbaldwin;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
 
 import java.util.ArrayList;
 
@@ -24,6 +35,7 @@ public class FamilyListFragment extends ListFragment {
         getActivity().setTitle(R.string.family_member_title);
         FamilyMemberAdapter adapter = new FamilyMemberAdapter(mFamily.getFamilyList());
         setListAdapter(adapter);
+        setHasOptionsMenu(true);
     }
 
 
@@ -50,5 +62,96 @@ public class FamilyListFragment extends ListFragment {
             return convertView;
         }
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+                             Bundle savedInstanceState) {
+        View v = super.onCreateView(inflater, parent, savedInstanceState);
+
+        ListView listView = (ListView)v.findViewById(android.R.id.list);
+        registerForContextMenu(listView);
+
+        return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_family_list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FamilyMemberAdapter adapter = (FamilyMemberAdapter)getListAdapter();
+        switch (item.getItemId()) {
+            case R.id.menu_item_new_guardian:
+                Log.d(TAG, "Selected add new guardian.");
+                Guardian guardian = new Guardian();
+                for (FamilyMember f: Family.getFamily().getFamilyList())
+                {
+                    if (f == guardian) {
+                        Log.i(TAG, "Possible match " + guardian + " and" + f);
+                    }
+                }
+                Family.getFamily().addFamilyMember(guardian);
+
+                adapter.notifyDataSetChanged();
+                return true;
+            case R.id.menu_item_new_sibling:
+                Log.d(TAG, "Selected add new sibling.");
+                Sibling sibling = new Sibling();
+                Family.getFamily().addFamilyMember(sibling);
+                adapter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        Log.d(TAG, "Creating Context Menu.");
+        getActivity().getMenuInflater().inflate(R.menu.family_list_item_context,
+                menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        Log.d(TAG, "Context item selected.");
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = info.position;
+        FamilyMemberAdapter adapter = (FamilyMemberAdapter) getListAdapter();
+        final FamilyMember familyMember = adapter.getItem(position);
+
+        switch (item.getItemId()) {
+            case R.id.menu_item_delete_family_member:
+                Family.getFamily().deleteFamilyMember(familyMember);
+                adapter.notifyDataSetChanged();
+                Backendless.Data.of(FamilyMember.class).remove(familyMember,new
+                        AsyncCallback<Long>() {
+                            @Override
+                            public void handleResponse(Long response) {
+                                Log.i(TAG, familyMember.toString() + " deleted");
+                            }
+
+                            @Override
+                            public void handleFault(BackendlessFault fault) {
+                                Log.e(TAG, fault.getMessage());
+                            }
+                        });
+                return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        FamilyMemberAdapter adapter = (FamilyMemberAdapter) getListAdapter();
+        adapter.notifyDataSetChanged();
+    }
+
 }
 

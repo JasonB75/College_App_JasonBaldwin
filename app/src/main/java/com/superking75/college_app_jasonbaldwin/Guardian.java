@@ -1,5 +1,7 @@
 package com.superking75.college_app_jasonbaldwin;
 
+import android.util.Log;
+
 public class Guardian extends FamilyMember {
     String lastName;
     String FirstName;
@@ -22,6 +24,7 @@ public class Guardian extends FamilyMember {
     public Guardian()
     {
         super();
+        Log.i()
         mOccupation = "Unknown";
     }
 

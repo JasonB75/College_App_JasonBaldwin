@@ -16,6 +16,10 @@ public class Sibling extends FamilyMember
         mFirstName = firstName;
         mLastName = lastName;
     }
+    public Sibling()
+    {
+
+    }
 
     public String getLastName()
     { return mlastName; }
