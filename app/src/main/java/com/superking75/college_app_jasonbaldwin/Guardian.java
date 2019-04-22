@@ -23,14 +23,19 @@ public class Guardian extends FamilyMember {
 
     public Guardian()
     {
-        super();
-        Log.i()
+        FirstName = "hey";
+        lastName = "boi";
+        Log.i("Guardian1212", FirstName);
         mOccupation = "Unknown";
     }
 
     public Guardian(String firstName, String lastName)
     {
+
         super(firstName,lastName);
+        FirstName = firstName;
+        this.lastName = lastName;
+        Log.i("Guardian1212", FirstName);
         mOccupation = "Unknown";
     }
 
@@ -45,7 +50,13 @@ public class Guardian extends FamilyMember {
     {
         return "Guardian: " + getFirstName() + " " +getLastName() +"\n Occupation: " + getOccupation();
     }
+
+    @Override
+    public boolean equals()
+    {
+        if ()
     }
+}
 
 
 
