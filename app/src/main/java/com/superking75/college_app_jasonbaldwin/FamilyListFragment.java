@@ -1,4 +1,5 @@
 package com.superking75.college_app_jasonbaldwin;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -162,6 +163,13 @@ public class FamilyListFragment extends ListFragment {
         FamilyMemberAdapter adapter = (FamilyMemberAdapter) getListAdapter();
         adapter.notifyDataSetChanged();
     }
-
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        FamilyMember f = ((FamilyMemberAdapter)getListAdapter()).getItem(position);
+        Log.d(TAG, f.toString() + " was clicked." + FamilyMemberActivity.class);
+        Intent i = new Intent(getActivity(), FamilyMemberActivity.class);
+        i.putExtra(FamilyMember.EXTRA_RELATION, f.getClass().getName());
+        i.putExtra(FamilyMember.EXTRA_INDEX, position);
+        startActivity(i);
+    }
 }
-

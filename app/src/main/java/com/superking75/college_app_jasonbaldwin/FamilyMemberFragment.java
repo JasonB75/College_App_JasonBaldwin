@@ -23,15 +23,15 @@ public class FamilyMemberFragment extends Fragment
     {   super.onCreateView(inflater,view,bundle);
 
 
-    View rootView = inflater.inflate(R.layout.fragment_family_member, view, false);
-    mFirstNameText = rootView.findViewById(R.id.familyfirstNameView);
+    View rootView = inflater.inflate(R.layout.fragment_guardian, view, false);
+    mFirstNameText = rootView.findViewById(R.id.siblingfirstNameView);
     mFirstNameText.setText(jack.getFirstName());
-    mLastNameText = rootView.findViewById(R.id.familylastNameView);
+    mLastNameText = rootView.findViewById(R.id.siblinglastNameView);
     mLastNameText.setText(jack.getLastName());
 
-    mSubmitButton = (Button) rootView.findViewById(R.id.familySubmitButton);
-    mFirstNameEdit = rootView.findViewById(R.id.familyFirstEdit);
-    mLastNameEdit = rootView.findViewById(R.id.familyLastEdit);
+    mSubmitButton = (Button) rootView.findViewById(R.id.siblingSubmitButton);
+    mFirstNameEdit = rootView.findViewById(R.id.siblingFirstEdit);
+    mLastNameEdit = rootView.findViewById(R.id.siblingLastEdit);
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override

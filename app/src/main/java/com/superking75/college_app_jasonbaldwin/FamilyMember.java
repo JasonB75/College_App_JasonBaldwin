@@ -6,6 +6,8 @@ public class FamilyMember
 {
     String mLastName;
     String mFirstName;
+    static final String  EXTRA_RELATION = "org.pltw.examples.collegeapp.relation";
+    static final String EXTRA_INDEX = "org.pltw.examples.collegeapp.index";
  //   EditText mFirstNameEdit;
    // EditText mLastNameEdit;
 
