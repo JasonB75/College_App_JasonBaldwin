@@ -34,6 +34,7 @@ public class FamilyListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         getActivity().setTitle(R.string.family_member_title);
+       // mFamily = Family.g
         FamilyMemberAdapter adapter = new FamilyMemberAdapter(mFamily.getFamilyList());
         setListAdapter(adapter);
         setHasOptionsMenu(true);

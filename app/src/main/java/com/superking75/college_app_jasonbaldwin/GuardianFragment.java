@@ -18,24 +18,28 @@ import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
+import com.backendless.persistence.DataQueryBuilder;
 
-/**
- * Created by simmonsj05 on 1/15/17.
- */
-public class GuardianFragment extends Fragment {
+import java.util.List;
 
-    private TextView mFirstNameTextView, mLastNameTextView, mOccupationTextView;
-    private EditText mFirstNameEditText, mLastNameEditText, mOccupationEditText;
-    private Button mSubmitButton;
-    private Guardian mGuardian;
-    private final String TAG = "GUARDIAN_FRAGMENT";
+
+public class GuardianFragment extends Fragment
+{
+
+    TextView mFirstNameTextView, mLastNameTextView, mOccupationTextView;
+    EditText mFirstNameEditText, mLastNameEditText, mOccupationEditText;
+    Button mSubmitButton;
+    Guardian mGuardian;
+    final String TAG = "GUARDIAN_FRAGMENT1212";
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_guardian, container, false);
+        Log.i(TAG, "In Guardian frag 121");
+        mGuardian = new Guardian("Elon", "Muskrat", "GOD");
 
-        mGuardian = new Guardian("Ada", "Lovelace", "Programmer");
 
         mFirstNameTextView = (TextView) rootView.findViewById(R.id.guardianfirstNameView);
         mLastNameTextView = (TextView) rootView.findViewById(R.id.guardianlastNameView);
@@ -101,4 +105,54 @@ public class GuardianFragment extends Fragment {
         }
         super.onStart();
     }
+
+
+
+/*
+    private void saveToBackendless(){
+        Log.d("save", "SavetoBackendless121");
+        String whereClause = "email = 'jasonbaldwin301@gmail.com'";
+        DataQueryBuilder query = DataQueryBuilder.create();
+        query.setWhereClause(whereClause);
+        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
+            @Override
+            public void handleResponse(List<Profile> response) {
+                if (!response.isEmpty()) {
+                    String guardianId = response.get(0).getObjectId();
+                    Log.d("Profile Fragment", "Object ID: " + guardianId);
+                    mGuardian.setObjectId(guardianId);
+                    Backendless.Data.of(Guardian.class).save(mGuardian, new AsyncCallback<Guardian>() {
+                        @Override
+                        public void handleResponse(Guardian response) {
+                            Log.i("success", response.getFirstName() + " has been saved");
+                        }
+
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                            Log.e("Error", fault.getMessage());
+                        }
+                    });
+                }
+                else{
+                    Backendless.Data.of(Profile.class).save(mGuardian, new AsyncCallback<Guardian>() {
+                        @Override
+                        public void handleResponse(Guardian response) {
+                            Log.i("success", response.getFirstName() + " has been saved");
+                            mGuardian.setObjectId(response.getObjectId());
+                        }
+
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                            Log.e("Error", fault.getMessage());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Log.e("Profile Fragment", "Failed to find profile: " + fault.getMessage());
+            }
+        });
+    }*/
 }

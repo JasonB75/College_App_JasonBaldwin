@@ -133,7 +133,7 @@ public class ApplicantActivity extends AppCompatActivity
 
         if (id == R.id.family_member) {
             contentFragment = new FamilyListFragment();
-            //contentFragment = new FamilyMemberFragment();
+            //contentFragment = new GuardianFragment();
         } else if (id == R.id.profile) {
             contentFragment = new ProfileFragment();
         }

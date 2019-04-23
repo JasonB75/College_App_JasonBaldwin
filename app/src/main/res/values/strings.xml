@@ -12,5 +12,5 @@
     <string name="delete_family_member">Delete Family Member</string>
     <string name="new_guardian">Add Guardian</string>
     <string name="new_sibling">Add Sibling</string>
-    <string name="guardianOcupationText">Occupation</string>
+    <string name="guardianOcupation">Occupation</string>
 </resources>
