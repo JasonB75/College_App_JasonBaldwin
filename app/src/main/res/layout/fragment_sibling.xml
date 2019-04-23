@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/siblingTextView"
+        android:id="@+id/guardianTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -18,18 +18,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/siblingfirstNameView"
+        android:id="@+id/guardianfirstNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="First"
-        app:layout_constraintEnd_toEndOf="@+id/siblingTextView"
-        app:layout_constraintStart_toStartOf="@+id/siblingTextView"
-        app:layout_constraintTop_toBottomOf="@+id/siblingTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/guardianTextView"
+        app:layout_constraintStart_toStartOf="@+id/guardianTextView"
+        app:layout_constraintTop_toBottomOf="@+id/guardianTextView" />
 
     <TextView
-        android:id="@+id/siblinglastNameView"
+        android:id="@+id/guardianlastNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Last"
@@ -37,29 +37,29 @@
         tools:layout_editor_absoluteY="110dp" />
 
     <EditText
-        android:id="@+id/siblingFirstEdit"
+        android:id="@+id/guardianFirstEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/siblingfirstNameView"
-        app:layout_constraintTop_toBottomOf="@+id/siblingTextView" />
+        app:layout_constraintStart_toEndOf="@+id/guardianfirstNameView"
+        app:layout_constraintTop_toBottomOf="@+id/guardianTextView" />
 
     <EditText
-        android:id="@+id/siblingLastEdit"
+        android:id="@+id/guardianLastEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/siblinglastNameView"
-        app:layout_constraintTop_toBottomOf="@+id/siblingFirstEdit" />
+        app:layout_constraintStart_toEndOf="@+id/guardianlastNameView"
+        app:layout_constraintTop_toBottomOf="@+id/guardianFirstEdit" />
 
     <Button
-        android:id="@+id/siblingSubmitButton"
+        android:id="@+id/guardianSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/siblingLastEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/guardianLastEdit" />
 
 
 </android.support.constraint.ConstraintLayout>
