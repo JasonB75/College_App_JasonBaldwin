@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.backendless.Backendless;
-import com.backendless.BackendlessCollection;
+//import com.backendless.BackendlessCollection;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
@@ -37,13 +37,13 @@ public class GuardianFragment extends Fragment {
 
         mGuardian = new Guardian("Ada", "Lovelace", "Programmer");
 
-        mFirstNameTextView = (TextView) rootView.findViewById(R.id.guardian_first_name);
-        mLastNameTextView = (TextView) rootView.findViewById(R.id.guardian_last_name);
-        mOccupationTextView = (TextView) rootView.findViewById(R.id.guardian_occupation);
-        mFirstNameEditText = (EditText) rootView.findViewById(R.id.guardian_first_name_edit);
-        mLastNameEditText = (EditText) rootView.findViewById(R.id.guardian_last_name_edit);
-        mOccupationEditText = (EditText) rootView.findViewById(R.id.guardian_occupation_edit);
-        mSubmitButton = (Button) rootView.findViewById(R.id.guardian_submit_button);
+        mFirstNameTextView = (TextView) rootView.findViewById(R.id.guardianfirstNameView);
+        mLastNameTextView = (TextView) rootView.findViewById(R.id.guardianlastNameView);
+        mOccupationTextView = (TextView) rootView.findViewById(R.id.guardian_ocupation_view);
+        mFirstNameEditText = (EditText) rootView.findViewById(R.id.guardianFirstEdit);
+        mLastNameEditText = (EditText) rootView.findViewById(R.id.guardianLastEdit);
+        mOccupationEditText = (EditText) rootView.findViewById(R.id.guardianoccupationedit);
+        mSubmitButton = (Button) rootView.findViewById(R.id.guardianSubmitButton);
 
         mFirstNameTextView.setText(mGuardian.getFirstName());
         mLastNameTextView.setText(mGuardian.getLastName());
@@ -94,7 +94,7 @@ public class GuardianFragment extends Fragment {
     public void onStart(){
         int index = getActivity().getIntent().getIntExtra(FamilyMember.EXTRA_INDEX, -1);
         if (index != -1){
-            mGuardian = (Guardian)Family.get().getFamily().get(index);
+            mGuardian = (Guardian)Family.getFamily().getFamilyList().get(index);
             mFirstNameTextView.setText(mGuardian.getFirstName());
             mLastNameTextView.setText(mGuardian.getLastName());
             mOccupationTextView.setText(mGuardian.getOccupation());

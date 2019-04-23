@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guardian_occupation_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/guardianoccupationedit" />
 
     <TextView
         android:id="@+id/guardian_ocupation_view"
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/guardianlastNameView" />
 
     <EditText
-        android:id="@+id/guardian_occupation_edit"
+        android:id="@+id/guardianoccupationedit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
