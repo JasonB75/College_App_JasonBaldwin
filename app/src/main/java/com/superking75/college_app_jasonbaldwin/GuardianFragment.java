@@ -38,7 +38,7 @@ public class GuardianFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_guardian, container, false);
         Log.i(TAG, "In Guardian frag 121");
-        mGuardian = new Guardian("Elon", "Muskrat", "GOD");
+        mGuardian = new Guardian();
 
 
         mFirstNameTextView = (TextView) rootView.findViewById(R.id.guardianfirstNameView);
@@ -76,7 +76,9 @@ public class GuardianFragment extends Fragment
                     mOccupationTextView.setText(occupation);
                     mOccupationEditText.setText("");
                 }
-                Backendless.Persistence.save(mGuardian, new AsyncCallback<Guardian>() {
+
+                saveToBackendless();
+                /*Backendless.Persistence.of(Guardian.class).save(mGuardian, new AsyncCallback<Guardian>() {
                     @Override
                     public void handleResponse(Guardian guardian) {
                         Log.i(TAG, "Saved" + guardian.toString());
@@ -86,7 +88,7 @@ public class GuardianFragment extends Fragment
                     public void handleFault(BackendlessFault backendlessFault) {
                         Log.i(TAG, backendlessFault.toString());
                     }
-                });
+                });*/
 
             }
         });
@@ -108,18 +110,18 @@ public class GuardianFragment extends Fragment
 
 
 
-/*
+
     private void saveToBackendless(){
-        Log.d("save", "SavetoBackendless121");
+        Log.d("save", "SavetoBackendless1212");
         String whereClause = "email = 'jasonbaldwin301@gmail.com'";
         DataQueryBuilder query = DataQueryBuilder.create();
         query.setWhereClause(whereClause);
-        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
+        Backendless.Data.of(Guardian.class).find( new AsyncCallback<List<Guardian>>() {
             @Override
-            public void handleResponse(List<Profile> response) {
+            public void handleResponse(List<Guardian> response) {
                 if (!response.isEmpty()) {
                     String guardianId = response.get(0).getObjectId();
-                    Log.d("Profile Fragment", "Object ID: " + guardianId);
+                    Log.d("Guardian Fragment", "Object ID: " + guardianId);
                     mGuardian.setObjectId(guardianId);
                     Backendless.Data.of(Guardian.class).save(mGuardian, new AsyncCallback<Guardian>() {
                         @Override
@@ -134,16 +136,16 @@ public class GuardianFragment extends Fragment
                     });
                 }
                 else{
-                    Backendless.Data.of(Profile.class).save(mGuardian, new AsyncCallback<Guardian>() {
+                    Backendless.Data.of(Guardian.class).save(mGuardian, new AsyncCallback<Guardian>() {
                         @Override
                         public void handleResponse(Guardian response) {
-                            Log.i("success", response.getFirstName() + " has been saved");
+                            Log.i("success1212", response.getFirstName() + " has been saved");
                             mGuardian.setObjectId(response.getObjectId());
                         }
 
                         @Override
                         public void handleFault(BackendlessFault fault) {
-                            Log.e("Error", fault.getMessage());
+                            Log.e("Error1212", fault.getMessage());
                         }
                     });
                 }
@@ -151,8 +153,8 @@ public class GuardianFragment extends Fragment
 
             @Override
             public void handleFault(BackendlessFault fault) {
-                Log.e("Profile Fragment", "Failed to find profile: " + fault.getMessage());
+                Log.e("Guardian Fragment", "Failed to find profile: " + fault.getMessage());
             }
         });
-    }*/
+    }
 }
