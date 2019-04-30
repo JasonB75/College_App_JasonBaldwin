@@ -1,7 +1,12 @@
 package com.superking75.college_app_jasonbaldwin;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Environment;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import java.io.File;
 import java.util.Date;
 
 public class Profile {
@@ -10,6 +15,7 @@ public class Profile {
     Date dateOfBirth;
     String objectId;
     String email;
+
     private final static String PHOTOFILENAME = "IMG_PROFILE.jpg";
     Bitmap i;
 
@@ -60,10 +66,17 @@ public class Profile {
         dateOfBirth = new Date();
     }
 
-  //  public String getPhotoFileName()
-   // {
-
-   // }
+   public String getPhotoFileName()
+   {
+        return PHOTOFILENAME;
+   }
+    public File getPhotoFile(Context context) {
+        File externalFilesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        if (externalFilesDir == null) {
+            return null;
+        }
+        return new File (externalFilesDir, getPhotoFileName());
+    }
 
 //cgo
 

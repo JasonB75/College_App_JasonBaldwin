@@ -2,7 +2,12 @@ package com.superking75.college_app_jasonbaldwin;
 import android.content.SharedPreferences;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -12,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Context;
 import com.backendless.Backendless;
@@ -21,6 +28,9 @@ import com.backendless.persistence.DataQueryBuilder;
 
 
 import android.widget.EditText;
+
+import java.io.File;
+import java.util.BitSet;
 import java.util.List;
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
@@ -44,6 +54,10 @@ public class ProfileFragment extends Fragment {
 
     EditText mFirstNameEdit;
     EditText mLastNameEdit;
+    private ImageButton mSelfieButton;
+    private ImageView mSelfieView;
+    private File mSelfieFile;
+    private final int REQUEST_SELFIE = 1;
 
 
 
@@ -107,6 +121,25 @@ public class ProfileFragment extends Fragment {
         mFirstNameEdit = rootView.findViewById(R.id.profileFirstEdit);
         mLastNameEdit = rootView.findViewById(R.id.profileLastEdit);
 
+        mSelfieButton = (ImageButton) rootView.findViewById(R.id.profile_camera);
+        mSelfieView = (ImageView) rootView.findViewById(R.id.profile_pic);
+        mSelfieFile = mProfile.getPhotoFile(getActivity());
+
+        final Intent captureSelfie = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        boolean canTakeSelfie = mSelfieFile != null &&
+                captureSelfie.resolveActivity(getActivity().getPackageManager()) != null;
+        mSelfieButton.setEnabled(canTakeSelfie);
+        if (canTakeSelfie) {
+            Uri uri = Uri.fromFile(mSelfieFile);
+            captureSelfie.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        }
+        mSelfieButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(captureSelfie, REQUEST_SELFIE);
+            }
+        });
+
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +164,7 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
+        updateSelfieView();
         return rootView;
     }
 
@@ -273,6 +306,9 @@ public class ProfileFragment extends Fragment {
                 saveToBackendless();
             }
         }
+        if(requestCode == REQUEST_SELFIE){
+            updateSelfieView();
+        }
     }
 
 
@@ -325,13 +361,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-  /**  public File getPhotoFile() {
-        File externalFilesDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        if (externalFilesDir == null) {
-            return null;
-        }
-        return new File (externalFilesDir, mProfile.getPhotoFilename());
-    }*/
+
     public void setmProfile(Profile mProfile, List<Profile> response, int dataIndex)
     { Log.i("set", "Set data from backendless 121");
         mProfile.setFirstName(response.get(dataIndex).getFirstName());
@@ -340,6 +370,16 @@ public class ProfileFragment extends Fragment {
         Log.i("121", response.get(dataIndex).getLastName());
         mProfile.setDateOfBirth(response.get(dataIndex).getDateOfBirth());
         mProfile.setObjectId(response.get(dataIndex).getObjectId());
+
+    }
+
+    public void updateSelfieView()
+    {
+        if (mSelfieFile!=null && mSelfieFile.exists())
+        {
+            Bitmap bitmap = BitmapFactory.decodeFile(mSelfieFile.getPath());
+            mSelfieView.setImageBitmap(bitmap);
+        }
 
     }
 
