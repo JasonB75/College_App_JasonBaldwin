@@ -8,8 +8,7 @@ public class FamilyMember
     String mFirstName;
     static final String  EXTRA_RELATION = "org.pltw.examples.collegeapp.relation";
     static final String EXTRA_INDEX = "org.pltw.examples.collegeapp.index";
- //   EditText mFirstNameEdit;
-   // EditText mLastNameEdit;
+
 
 
 
@@ -24,13 +23,14 @@ public class FamilyMember
     public void setFirstName(String firstName)
     { mFirstName = firstName; }
 
+    //The defualt constructor
     public FamilyMember()
     {
         mFirstName = "Hey";
         mLastName = "Baby";
 
     }
-
+//Constructor using first and last names
     public FamilyMember(String firstName, String lastName)
     {
         mFirstName = firstName;
@@ -43,6 +43,7 @@ public class FamilyMember
         }
     }
 
+    //A standardized version of the.equals method for family members. This checks the first and last names as well as the occupation if it is a guardian.
     public boolean equals(Object o) {
         if (o.getClass() == Guardian.class)
         {

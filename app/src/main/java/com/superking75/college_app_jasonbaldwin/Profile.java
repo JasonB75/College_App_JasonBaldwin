@@ -19,11 +19,11 @@ public class Profile {
     private final static String PHOTOFILENAME = "IMG_PROFILE.jpg";
     Bitmap i;
 
-
+//Returns the Profile's email
     public String getEmail() {
         return email;
     }
-
+//Sets
     public void setEmail(String email) {
         this.email = email;
     }
@@ -70,6 +70,8 @@ public class Profile {
    {
         return PHOTOFILENAME;
    }
+
+   //returns the path to the photofile
     public File getPhotoFile(Context context) {
         File externalFilesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         if (externalFilesDir == null) {

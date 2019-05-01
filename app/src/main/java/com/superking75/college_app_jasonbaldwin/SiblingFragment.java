@@ -29,7 +29,7 @@ public class SiblingFragment extends Fragment
         Sibling mSibling;
         final String TAG = "SIBLING FRAGMENT1212";
 
-
+        //Standard oncreate. Intalizes the nessesary textViews and EditTexts and waits for the submit button to be pressed. On being pressed it takes the info from the editTexts and places it in backendless and the Sibling object
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

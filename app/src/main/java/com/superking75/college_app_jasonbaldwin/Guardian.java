@@ -74,14 +74,6 @@ public class Guardian extends FamilyMember {
         mObjectId = objectId;
     }
 
-    //@Override
-    /*public boolean equals(FamilyMember guardian)
-    {
-        if (guardian.getFirstName().equalsIgnoreCase(FirstName) && guardian.getLastName().equalsIgnoreCase(lastName))
-        {return true;}
-        else
-        {return false;}
-    }*/
 }
 
 

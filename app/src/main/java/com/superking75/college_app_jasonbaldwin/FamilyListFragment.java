@@ -40,7 +40,7 @@ public class FamilyListFragment extends ListFragment {
         setHasOptionsMenu(true);
     }
 
-
+//Acts as an adapter for the listview
     private class FamilyMemberAdapter extends ArrayAdapter<FamilyMember> {
         public FamilyMemberAdapter(ArrayList<FamilyMember> family) {
             super(getActivity(), 0, family);

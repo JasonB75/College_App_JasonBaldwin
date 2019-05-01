@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 public class FamilyMemberActivity extends FragmentActivity
 {
+    //Starndard oncreate. Infaltes the activity and pulls in information from the intent
     @Override
     public void onCreate(Bundle savedInstanceState) {
 

@@ -32,13 +32,6 @@ public class Sibling extends FamilyMember
     public void setFirstName(String firstName)
     { mFirstName = firstName; }
 
-    /*public boolean equals(FamilyMember sibling)
-    {
-        if (sibling.getFirstName().equalsIgnoreCase(mFirstName) && sibling.getLastName().equalsIgnoreCase(mlastName))
-        {return true;}
-        else
-        {return false;}
-    }*/
 }
 
 

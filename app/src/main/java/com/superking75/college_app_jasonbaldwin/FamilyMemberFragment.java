@@ -18,6 +18,8 @@ public class FamilyMemberFragment extends Fragment
 
     EditText mFirstNameEdit;
     EditText mLastNameEdit;
+
+    //Standard oncreate. Intalizes the nessesary textViews and EditTexts and waits for the submit button to be pressed. On being pressed it takes the info from the editTexts and places it in the FamilyMember
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup view, Bundle bundle)
     {   super.onCreateView(inflater,view,bundle);

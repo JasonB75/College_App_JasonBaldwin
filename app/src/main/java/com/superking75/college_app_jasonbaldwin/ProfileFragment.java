@@ -62,13 +62,10 @@ public class ProfileFragment extends Fragment {
 
 
 
-
+//Starts and inflates the profile fragment. It then intilizes all buttons and objects needed before waiting for buttons to be pressed.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup view, Bundle bundle){
         super.onCreateView(inflater, view, bundle);
-
-
-
 
         mProfile = new Profile();
 
@@ -126,17 +123,22 @@ public class ProfileFragment extends Fragment {
         mSelfieFile = mProfile.getPhotoFile(getActivity());
 
         final Intent captureSelfie = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        captureSelfie.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
         boolean canTakeSelfie = mSelfieFile != null &&
                 captureSelfie.resolveActivity(getActivity().getPackageManager()) != null;
+
         mSelfieButton.setEnabled(canTakeSelfie);
         if (canTakeSelfie) {
             Uri uri = Uri.fromFile(mSelfieFile);
             captureSelfie.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
         }
         mSelfieButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivityForResult(captureSelfie, REQUEST_SELFIE);
+
             }
         });
 
@@ -168,51 +170,17 @@ public class ProfileFragment extends Fragment {
         return rootView;
     }
 
+
+//Auto saves to backendless when paused
     @Override
     public void onPause()
     {
         super.onPause();
         saveToBackendless();
 
-       /* SharedPreferences sharedPreferences =
-                getActivity().getPreferences(Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
-        if (mProfile.getEmail() == null) {
-            mProfile.setEmail(email);
-        }
-        String whereClause = "email = '" + email + "'";
-        DataQueryBuilder query = DataQueryBuilder.create();
-        query.setWhereClause(whereClause);
-        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
-            @Override
-            public void handleResponse(List<Profile> profile) {
-                if (!profile.isEmpty()) {
-                    String profileId = profile.get(0).getObjectId();
-                    Log.d(TAG, "Object ID: " + profileId);
-                    mProfile.setObjectId(profileId);
-                }
-            }
-            @Override
-            public void handleFault(BackendlessFault fault) {
-                Log.e(TAG, "Failed to find profile: " + fault.getMessage());
-            }
-        });
-
-
-        System.out.println("OnPause");
-            Backendless.Data.of(Profile.class).save(mProfile, new AsyncCallback<Profile>() {
-                @Override
-                public void handleResponse(Profile response) {
-                    Log.i(TAG, "Saved profile to Backendless");
-                }
-
-                @Override
-                public void handleFault(BackendlessFault fault) {
-                    Log.i(TAG, "Failed to save profile" + fault.getMessage());
-                }
-            });*/
     }
 
+    //Auto loads backendless data on start
     @Override
     public void onStart()
     {Log.i(TAG, "onstart121");
@@ -247,64 +215,17 @@ public class ProfileFragment extends Fragment {
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-        /*
-        SharedPreferences sharedPreferences =
-                getActivity().getPreferences(Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString(ApplicantActivity.EMAIL_PREF, null);
-
-            //mProfile.setEmail(email);
-        Log.i(TAG, "midway121");
-        String whereClause = "email = '" + email + "'";
-        DataQueryBuilder query = DataQueryBuilder.create();
-        query.setWhereClause(whereClause);
-        Log.i(TAG, "midFAr1212");
-        Backendless.Data.of(Profile.class).find( new AsyncCallback<List<Profile>>() {
-
-            @Override
-            public void handleResponse(List<Profile> profile) {
-                Log.i(TAG, "inResponse1212");
-                if (!profile.isEmpty()) {
-                    String profileId = profile.get(0).getObjectId();
-                  //  mFirstNameText =
-                   // Log.d(TAG, "Object ID: " + profileId);
-                    mProfile = profile.get(0);
-                    //mProfile.setFirstName(mProfile);
-                    //mProfile.setLastName(mLastNameEdit.getText().toString());
-                    mFirstNameText.setText(mProfile.getFirstName());
-                    mLastNameText.setText(mProfile.getLastName());
-                    Log.i(TAG, "Pulled info from backendless");
-                    mProfile.setObjectId(profileId);
-                }
-            }
-            @Override
-            public void handleFault(BackendlessFault fault) {
-                Log.e(TAG, "Failed to find profile: " + fault.getMessage());
-            }
-        });*/
-
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent){
         Log.i("ProfileFragment", "" + requestCode + " " + resultCode);
         if (resultCode == Activity.RESULT_OK){
-            if (requestCode == REQUEST_DATE_OF_BIRTH){
-                mProfile.dateOfBirth = (Date)intent.getSerializableExtra(DatePickerFragment.EXTRA_DATE_OF_BIRTH);
-                Log.i("ProfileFragment", mProfile.dateOfBirth.toString());
-                DatePickerButton.setText(mProfile.dateOfBirth.toString());
-                saveToBackendless();
-            }
+            return;
+        }
+        if (requestCode == REQUEST_DATE_OF_BIRTH){
+            mProfile.dateOfBirth = (Date)intent.getSerializableExtra(DatePickerFragment.EXTRA_DATE_OF_BIRTH);
+            Log.i("ProfileFragment", mProfile.dateOfBirth.toString());
+            DatePickerButton.setText(mProfile.dateOfBirth.toString());
+            saveToBackendless();
         }
         if(requestCode == REQUEST_SELFIE){
             updateSelfieView();

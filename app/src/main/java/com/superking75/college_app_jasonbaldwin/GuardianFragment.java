@@ -32,7 +32,7 @@ public class GuardianFragment extends Fragment
     Guardian mGuardian;
     final String TAG = "GUARDIAN_FRAGMENT1212";
 
-
+//Standard oncreate. Intalizes the nessesary textViews and EditTexts and waits for the submit button to be pressed. On being pressed it takes the info from the editTexts and places it in backendless and the mGuardian.
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,17 +78,6 @@ public class GuardianFragment extends Fragment
                 }
 
                 saveToBackendless();
-                /*Backendless.Persistence.of(Guardian.class).save(mGuardian, new AsyncCallback<Guardian>() {
-                    @Override
-                    public void handleResponse(Guardian guardian) {
-                        Log.i(TAG, "Saved" + guardian.toString());
-                    }
-
-                    @Override
-                    public void handleFault(BackendlessFault backendlessFault) {
-                        Log.i(TAG, backendlessFault.toString());
-                    }
-                });*/
 
             }
         });
@@ -96,6 +85,7 @@ public class GuardianFragment extends Fragment
         return rootView;
     }
 
+    //Pulls intent data from the previous activity when it starts
     @Override
     public void onStart(){
         int index = getActivity().getIntent().getIntExtra(FamilyMember.EXTRA_INDEX, -1);
@@ -110,7 +100,7 @@ public class GuardianFragment extends Fragment
 
 
 
-
+//A conveniance method used to save data to backendless
     private void saveToBackendless(){
         Log.d("save", "SavetoBackendless1212");
         String whereClause = "email = 'jasonbaldwin301@gmail.com'";

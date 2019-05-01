@@ -11,6 +11,7 @@ public class Family
 
     private static Family sFamily;
 
+    //Auto loads a set of family members to be dispalyed while constructing them.
     private Family()
     {
         Guardian test = new Guardian("jace", "boi");

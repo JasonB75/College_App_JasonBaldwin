@@ -35,7 +35,7 @@ public class ApplicantActivity extends AppCompatActivity
         final static String EMAIL_PREF = "EMAIL_PREF";
 
 
-
+//The Very First oncreate of the App. Starts backendless, and sets up the main layout.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +93,7 @@ public class ApplicantActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    //Deals with the nav Drawer being clicked
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,13 +104,14 @@ public class ApplicantActivity extends AppCompatActivity
         }
     }
 
+    //Creates the options menu to be used.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
+//Acts when an option is selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
